@@ -1,0 +1,29 @@
+{
+  "name": "react_bdj",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "cd Backend-Server && ts-node app.ts",
+    "frontend-react": "cd Frontend-Client/bdz-system && npm start",
+    "dev-react": "concurrently \"npm run server\" \"npm run frontend-react\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.14",
+    "@types/node": "^18.8.1",
+    "axios": "^1.1.2",
+    "concurrently": "^7.4.0",
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "node": "^18.10.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.9.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  }
+}
