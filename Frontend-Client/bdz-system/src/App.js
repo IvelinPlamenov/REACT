@@ -1,16 +1,23 @@
-import Routers from './Components/Routers';
-import {BrowserRouter, Route, Routes} from "react-router-dom"
-import Tickets from './Components/Tickets';
+import Ticket from './Components/Tickets';
 import TicketList from './Components/TicketList'
-import Register from './Components/Register'
 import UsersList from './Components/UsersList'
-
-
+import { Route, Routes } from 'react-router-dom';
+import { NavBar } from './Components/NavBar/NavBar';
+import Register from "./Components/Register"
 function App() {
   return (
-        <div>
-            <UsersList/>
-        </div>
+    <>
+      <NavBar/>
+      <Routes>
+        <Route path="/" element={<Ticket/>}/>
+        <Route path="/TicketsList" element={<TicketList/>}/>
+        <Route path="/UsersList" element={<UsersList/>}/>
+        <Route path="/reg" element={<Register/>}/>
+
+      </Routes>
+    </>
+    
+        
   )
 }
 

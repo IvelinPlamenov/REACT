@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-
+import "./Tickets.css"
 function Ticket(){
     const [getStart, setGetStart] = useState("")
     const [StartList, setStartList] = useState([]);
@@ -64,43 +64,38 @@ function Ticket(){
     const handleClick = (event )=> {
         setIsShown(current => !current);
       };
-
-    const [Shown, setShown] = useState(false);
-    const selectHandleClick = (event )=> {
-        setShown(current => !current);
-      };
    
 
     return (
-    <div className="chooseTicket">
     <div className="form">
-        <div>
+    <div className="form">
+        <div id="select-box">
              <p>Oт:  </p>
-                 <select  style={{width: '150px'}} className="form-control"  onChange={handleChange}>
+                 <select  style={{width: '150px'}} className="select"  onChange={handleChange}>
                      <option key='blankKey'>Начална гара</option>
                     {StartList.map((value, index)=>
                         <option key={index}>{value.start}</option>)}
                 </select>
         </div>
-       
-
         <br/><br/>
 
         <p>До:  </p>
-        <select id={"select"} style={{width: '150px'}} className="form-control" onBlur={selectHandleClick} onChange={endHandleChange}>
+        <select id={"select"} style={{width: '150px'}} className="select" onChange={endHandleChange}>
             <option >Крайна гара</option>
             {
              EndList.map((value,index) =>
                 <option key={index} >{value.end}</option>)
             }
-           
         </select>
-               
+        <br></br>
+        <br></br>
+
+               <button className="select"  onClick={handleClick}>View information</button>
     </div>
 
         <br/> <br/>
 
-        <button className="select"  onClick={handleClick}>View information</button>
+        
         {isShown && <div onBlur={handleClick}>
             {View.map((value) =>
                 <table  key={value.id} className="content-table">
@@ -125,10 +120,6 @@ function Ticket(){
                 <tr >
                     <td>Цена</td>
                     <td >{value.price}</td>
-                </tr>
-                <tr >
-                    
-                    <td >{value.id}</td>
                 </tr>
                 <tr >
                     <td  colSpan="2" ><button onClick={() => {Buy(value.id)}}>Купи</button></td>

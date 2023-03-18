@@ -15,7 +15,7 @@ const [Email, setEmail] = useState("")
             body: JSON.stringify({
                 username: Username,
                 password: Password,
-                email: Email
+                email: Email,
             })
             
         });

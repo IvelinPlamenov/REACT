@@ -2,10 +2,20 @@
 declare var require: any
 const mysql = require('mysql2');
 
+export type CreateUser = {
+    email: string,
+    role:string
+}
 export type RegUser = {
     username: string,
     password: string,
     email: string,
+}
+export type EditUser = {
+    id: number,
+    username: string,
+    email: string,
+    role: string
 }
 export type User = {
     id: number,
@@ -13,6 +23,16 @@ export type User = {
     password: string,
     email: string,
     role: string
+}
+export type User2 = {
+    id: number,
+    username: string,
+    password: string,
+    email: string,
+    role: string
+    FirstName: string,
+    LastName:string,
+    Age: number
 }
 export type StartDest = {
     start:string
@@ -49,7 +69,7 @@ export type deleteRecord = {
     id: string
 }
 
-export class UserModel{
+export class Model{
     private conn; //connection to db
     constructor() {
         const pool = mysql.createPool({host: 'localhost', user: 'root', database: 'bdj'});
@@ -60,6 +80,8 @@ export class UserModel{
         return rows;
     }
     async getEnd(name: string): Promise<EndDest[]> {
+        console.log(name);
+        
         const statement = `SELECT DISTINCT end FROM bileti WHERE start = '${name}'`
         const [rows] = await this.conn.query(statement);
         return rows;
@@ -75,7 +97,7 @@ export class UserModel{
         return rows
     }
 
-    async createUser(userDataInput: RegUser): Promise<boolean> {
+    async RegisterUser(userDataInput: RegUser): Promise<boolean> {
         let sql = "INSERT INTO users (username, password, email) VALUES(?,?,?)"
         let values = [
             userDataInput.username,
@@ -86,6 +108,40 @@ export class UserModel{
         return true;
 
     }
+    async createUser(userDataInput: CreateUser){
+        let sql = "INSERT INTO users (username, email) VALUES(?,?)"
+        let values = [
+            userDataInput.email,
+            userDataInput.role]
+        sql = mysql.format(sql, values)
+        const create = await this.conn.execute(sql)
+
+        // const statement = `SELECT * FROM users WHERE email = '${userDataInput.email}'`
+        // const [rows] = await this.conn.query(statement);    
+        // console.log(rows);
+        return create
+        
+       // return true
+        
+    }
+    async getCreatedUser(userData:string): Promise<User2[]> {
+        console.log(userData);
+        
+        const statement = `SELECT * FROM users WHERE email = '${userData}'`
+        const [rows] = await this.conn.query(statement);
+        console.log(rows);
+        return rows;
+    }
+    async updateUser(userDataInput: EditUser): Promise<boolean> {
+        let sql = `UPDATE users SET email='${userDataInput.email}', role='${userDataInput.role}' WHERE users.id = '${userDataInput.id}'`;
+        let values = [
+            userDataInput.email,
+            userDataInput.role]
+        sql = mysql.format(sql,values)
+        await this.conn.execute(sql);
+        return true;
+    }
+
     async deleteUser(id: number): Promise<boolean> {
         await this.conn.execute("DELETE FROM `users` WHERE id = ?", [id]);
         return true;
@@ -103,6 +159,12 @@ export class UserModel{
 
     async getUsersList(): Promise<User> {
         const [rows] = await this.conn.query("SELECT * FROM users");
+        return rows;
+    }
+
+    async getUser( id:any ): Promise<User> {
+        const statement = `SELECT * FROM users WHERE id = '${id}'`
+        const [rows] = await this.conn.query(statement);
         return rows;
     }
 }
