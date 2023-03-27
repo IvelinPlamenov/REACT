@@ -1,28 +1,11 @@
-import "./css/DeleteUser.css"
+//import styles from "./DeleteUser.css"
+//import styles from "./DeleteUser2.module.css"
+
 export const UserDelete = ({
     onDelete,
     onClose,
 }) =>{
     return(
-        // <div className="overlay">
-        //     <div className="backdrop"></div>
-        //     <div className="modal">
-        //         <div className="confirm-container">
-        //             <header className="headers">
-        //                 <h2>Are you sure you want to delete this account?</h2>
-        //                 <button className="btn close" onClick={onClose}>
-        //                 </button>
-        //             </header>
-        //             <div className="actions">
-        //                 <div id="form-actions">
-        //                     <button id="action-save" className="btn" type="submit" onClick={onDelete}>Delete</button>
-        //                     <button id="action-cancel" className="btn" type="button" onClick={onClose}>Cancel</button>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </div>
-
         <div className="overlay">
         <div className="backdrop"></div>
         <div className="modal">
@@ -38,10 +21,10 @@ export const UserDelete = ({
                         </svg>
                     </button>
                 </header>
-                <div className="actions">
+                <div className="action">
                     <div id="form-actions">
                         <button id="action-save" className="btn" type="submit" onClick={onDelete}>Delete</button>
-                        <button id="action-cancel" className="btn" type="button" onClick={onClose}>
+                        <button id="action-cancel" className="btn"type="button" onClick={onClose}>
                             Cancel
                         </button>
                     </div>
@@ -49,6 +32,20 @@ export const UserDelete = ({
             </div>
         </div>
     </div>
+        // <div  className="modal"]}>
+        //     <span onclick={onClose} className="close"]} title="Close Modal">&times;</span>
+        //     <form className="modal-content"]} action="/action_page.php">
+        //         <div className="container"]}>
+        //             <h1>Delete Account</h1>
+        //             <p>Are you sure you want to delete your account?</p>
+            
+        //             <div className="clearfix"]}>
+        //                 <button type="button" className="cancelbtn"]}>Cancel</button>
+        //                 <button type="button" className="cancelbtn"]}>Delete</button>
+        //             </div>
+        //         </div>
+        //     </form>
+        // </div>
     )
 }
 

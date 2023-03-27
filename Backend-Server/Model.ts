@@ -3,7 +3,11 @@ declare var require: any
 const mysql = require('mysql2');
 
 export type CreateUser = {
+    username:string,
     email: string,
+    FirstName: string,
+    LastName: string,
+    age:number
     role:string
 }
 export type RegUser = {
@@ -15,14 +19,26 @@ export type EditUser = {
     id: number,
     username: string,
     email: string,
-    role: string
+    role: string,
+    FirstName: string,
+    LastName: string,
+    age:number
 }
 export type User = {
     id: number,
     username: string,
-    password: string,
     email: string,
-    role: string
+    role: string,
+    FirstName: string,
+    LastName: string,
+    Age:number
+    
+}
+export type Login = {
+    id: number,
+    username: string,
+    email: string,
+    role: string,
 }
 export type User2 = {
     id: number,
@@ -55,8 +71,9 @@ export type Buy = {
     ticket_id: number
 }
 export type infoList = {
+    id:number,
     username: string,
-    id: string,
+    bilet_id: string,
     date: string,
     start: string,
     end: string,
@@ -66,7 +83,7 @@ export type infoList = {
     price: string,
 }
 export type deleteRecord = {
-    id: string
+    id: number
 }
 
 export class Model{
@@ -80,8 +97,6 @@ export class Model{
         return rows;
     }
     async getEnd(name: string): Promise<EndDest[]> {
-        console.log(name);
-        
         const statement = `SELECT DISTINCT end FROM bileti WHERE start = '${name}'`
         const [rows] = await this.conn.query(statement);
         return rows;
@@ -96,7 +111,6 @@ export class Model{
         const [rows] = await this.conn.query(BuyTicket)
         return rows
     }
-
     async RegisterUser(userDataInput: RegUser): Promise<boolean> {
         let sql = "INSERT INTO users (username, password, email) VALUES(?,?,?)"
         let values = [
@@ -109,34 +123,34 @@ export class Model{
 
     }
     async createUser(userDataInput: CreateUser){
-        let sql = "INSERT INTO users (username, email) VALUES(?,?)"
+        let sql = "INSERT INTO users (username, email, FirstName, LastName, age, role) VALUES(?,?,?,?,?,?)"
         let values = [
+            userDataInput.username,
             userDataInput.email,
+            userDataInput.FirstName,
+            userDataInput.LastName,
+            userDataInput.age,
             userDataInput.role]
         sql = mysql.format(sql, values)
         const create = await this.conn.execute(sql)
-
-        // const statement = `SELECT * FROM users WHERE email = '${userDataInput.email}'`
-        // const [rows] = await this.conn.query(statement);    
-        // console.log(rows);
         return create
-        
-       // return true
         
     }
     async getCreatedUser(userData:string): Promise<User2[]> {
-        console.log(userData);
-        
         const statement = `SELECT * FROM users WHERE email = '${userData}'`
         const [rows] = await this.conn.query(statement);
-        console.log(rows);
         return rows;
     }
     async updateUser(userDataInput: EditUser): Promise<boolean> {
-        let sql = `UPDATE users SET email='${userDataInput.email}', role='${userDataInput.role}' WHERE users.id = '${userDataInput.id}'`;
+        let sql = `UPDATE users SET email='${userDataInput.email}',FirstName='${userDataInput.FirstName}', LastName='${userDataInput.LastName}', age ='${userDataInput.age}',role='${userDataInput.role}' WHERE users.id = '${userDataInput.id}'`;
+      
         let values = [
             userDataInput.email,
+            userDataInput.FirstName,
+            userDataInput.LastName,
+            userDataInput.age,
             userDataInput.role]
+      
         sql = mysql.format(sql,values)
         await this.conn.execute(sql);
         return true;
@@ -147,23 +161,29 @@ export class Model{
         return true;
     }
     async deleteRecord(id: number): Promise<deleteRecord[]> {
-        const statement = `DELETE FROM list WHERE bilet_id = '${id}'`
+        const statement = `DELETE FROM list WHERE id = '${id}'`
         const del = await this.conn.query(statement);
         return del;
     }
 
     async getTicketList(username: string): Promise<infoList> {
-        const [rows] = await this.conn.query(`Select list.username,bileti.date, bileti.start, bileti.starttime, bileti.end, bileti.endtime, bileti.duration, bileti.price, bileti.id from list join bileti on list.bilet_id=bileti.id join users ON list.username=users.username WHERE list.username = '${username}'`);
+        const [rows] = await this.conn.query(`Select list.id,bileti.date, bileti.start, bileti.starttime, bileti.end, bileti.endtime, bileti.duration, bileti.price from list join bileti on list.bilet_id=bileti.id join users ON list.username=users.username WHERE list.username = '${username}'`);
         return rows;
     }
 
     async getUsersList(): Promise<User> {
-        const [rows] = await this.conn.query("SELECT * FROM users");
+        const [rows] = await this.conn.query("SELECT id, username, email, role, FirstName, LastName, Age FROM users");
         return rows;
     }
 
     async getUser( id:any ): Promise<User> {
         const statement = `SELECT * FROM users WHERE id = '${id}'`
+        const [rows] = await this.conn.query(statement);
+        return rows;
+    }
+
+    async Login( username: string, password:string ): Promise<Login> {
+        const statement = `SELECT id,username,email,role FROM users WHERE username = '${username}' and password = '${password}'`
         const [rows] = await this.conn.query(statement);
         return rows;
     }

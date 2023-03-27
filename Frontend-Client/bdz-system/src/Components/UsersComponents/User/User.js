@@ -1,26 +1,20 @@
-import { UserDetails } from "./UsersComponents/UserDetails";
-import { useState } from "react";
-const User = ({
-    id,username,email,role,
+import "../EditUser.css"
+export const User = ({
+    id,username,email,role,FirstName,LastName,Age,
     onDeleteClick,
-    onEditClick
+    onEditClick,
+    onInfoClick
 }) => {
-    const [showInfoUser, setShowInfoUser] = useState(null);
-
-    const onInfoClick= () =>{
-        setShowInfoUser(true)
-    }
-    const onClose = () =>{
-        setShowInfoUser(null)
-    }
 
     return(
         <>
-        {showInfoUser && <UserDetails user={{id,username,email,role}} onClose={onClose}/>}
             <tr >
                 <td>{username} </td>
                 <td>{id}</td>
+                <td>{FirstName}</td>
+                <td>{LastName}</td>
                 <td>{email}</td>
+                <td>{Age}</td>
                 <td>{role}</td>
                 <td className="delete">
                     <button className="btn delete-btn" title="Delete" onClick={() => {onDeleteClick(id)}} >
@@ -41,7 +35,7 @@ const User = ({
                     </button>
                 </td>
                 <td className="details">
-                    <button className="btn info-btn" title="Info" onClick={() => {onInfoClick()}} >
+                    <button className="btn info-btn" title="Info" onClick={() => {onInfoClick(id)}} >
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info"
                             className="svg-inline--fa fa-info" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="-150 0 512 612">
                             <path fill="currentColor"
@@ -58,4 +52,3 @@ const User = ({
         
     )
 }
-export default User;

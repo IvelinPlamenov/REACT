@@ -1,9 +1,10 @@
-export const UserDetails = ({user,onClose}) =>{
-
+export const UserDetails = ({id,username, email, role, FirstName, LastName, Age, onClose}) =>{
+ 
     return(
-        <div className="overlay" >
-        <div className="backdrop"></div>
-        <div className="modal">
+        <body>
+            <div className="overlay" >
+            <div className="backdrop"></div>
+            <div className="modal">
             <div className="detail-container">
                 <header className="headers">
                     <h2>User Detail</h2>
@@ -19,26 +20,19 @@ export const UserDetails = ({user,onClose}) =>{
                 <div className="content">
                     
                     <div className="user-details">
-                        <p>User Id: <strong>{user.id}</strong></p>
-                        <p>Username: <strong>{user.username}</strong></p>
-                        <p>Role: <strong>{user.role}</strong></p>
-                        <p>
-                            Full Name:
-                            <strong>  </strong>
-                        </p>
-                        <p>Email: <strong>{user.email}</strong></p>
-                        <p>Phone Number: <strong></strong></p>
-                        <p>
-                            Address:
-                            <strong> </strong>
-                        </p>
-
-                        <p>Created on: <strong></strong></p>
-                        <p>Modified on: <strong></strong></p>
+                        <p>User Id: <strong>{id}</strong></p>
+                        <p>Username: <strong>{username}</strong></p>
+                        <p>Email: <strong>{email}</strong></p>
+                        <p>Role: <strong>{role}</strong></p>
+                        <p>First Name: <strong>{FirstName}</strong></p>
+                        <p>Last Name: <strong>{LastName}</strong></p>
+                        <p>Age: <strong>{Age}</strong></p>
                     </div>
                 </div>
             </div>
         </div>
     </div >
+     </body>
+        
     )
 }

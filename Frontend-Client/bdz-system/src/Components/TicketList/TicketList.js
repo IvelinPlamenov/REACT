@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
-import "./TicketList.css"
+import styles from "./TicketList.module.css"
 
-const TicketList = () =>{
+export const TicketList = () =>{
     const [User, setUser] = useState("")
     const [List, setList] = useState([])
     
@@ -15,14 +15,27 @@ const TicketList = () =>{
         }
     },[User]);
 
+    const deleteTicket = (id) =>{
+        fetch(`http://localhost:3001/bdj/deleteTicket`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify({
+                id
+            })
+        });
+        setList(state => state.filter(x => x.id !== id))
+    }
+
     return(
        <div>
             {List ? 
             <div>
-                <div className="bileti">
+                <div className={styles["bileti"]}>
                     <h1><b>Билети</b></h1>
                 </div>
-                <table  className="content-table">
+                <table  className={styles["content-table"]}>
                 <thead>
                     <tr>
                         <th scope="colgroup"></th>
@@ -45,21 +58,17 @@ const TicketList = () =>{
                         <td>{value.endtime}</td>
                         <td>{value.duration}</td>
                         <td>{value.price}</td>
-                        <td className="delete"><button  >Изтрии</button></td>
+                        <td className="delete"><button onClick={() => deleteTicket(value.id)}>Премахни</button></td>
                     </tr>
                 )}
                 </tbody>
                 </table>
             </div>
             :
-            <div className="Empty">
+            <div className={styles["Empty"]}>
                 <h1><b>Няма закупени билети!</b></h1>
             </div>
             }
-            
-
-            
        </div>
     )
 } 
-export default TicketList;

@@ -29,16 +29,15 @@ export const Buy = async (request: Request, response: Response) => {
 export const getCreatedUser =  async (request: Request, response: Response) => {
     const userData:string = request.params.email || "null"
     const User = await new Model().getCreatedUser(userData)
-    console.log(User);
     response.send(User)
 }
 export const createUser = async (request: Request, response: Response) => {
     try{
-        let userData: CreateUser = request.body;
+        const { username, email, FirstName, LastName, age, role } = request.body
+        const data = { username, email, FirstName, LastName, age,role }
+        let userData: CreateUser = data;
         const userModel = new Model();
         const create = await userModel.createUser(userData)
-        console.log(create[0].insertId);
-        let idd = create[0].insertId
         response.send({id:create[0].insertId})
     } catch (e){
         response.status(403).send({
@@ -49,7 +48,9 @@ export const createUser = async (request: Request, response: Response) => {
 }
 export const RegisterUser = async (request: Request, response: Response) => {
     try{
-        let userData: RegUser = request.body;
+        const {username, password, email} = request.body
+        const data = {username, password, email}
+        let userData: RegUser = data;
         const userModel = new Model();
         await userModel.RegisterUser(userData)
         response.send({
@@ -64,21 +65,20 @@ export const RegisterUser = async (request: Request, response: Response) => {
 }
 export const updateUser = async (req: Request, res: Response) => {
     try {
-        //const id = Number(req.params.id);
-        const Data:EditUser = req.body;
+        const { id, data } = req.body
+        const Data:EditUser = {id, ...data};
         await new Model().updateUser(Data);
         res.status(200).send({
             message: "Success"
         })
     } catch (e) {
-        console.log({e})
         res.status(403).send({
             message: "Failed to update user"
         })
     }
 }
 export const deleteUser = async (request: Request, response: Response) => {
-    const id:any = request.params.id
+    const id:number = request.body.UserId
     const userModel = new Model()
     await userModel.deleteUser(id)
     response.send({
@@ -88,13 +88,14 @@ export const deleteUser = async (request: Request, response: Response) => {
 }
 export const deleteRecord = async (request: Request, response: Response) => {
     //const id: number = +request.params.id
-    const id: number = request.body.ticketID;
+    const id: number = request.body.id;
     const del = await new Model().deleteRecord(id)
     response.send(del)
 }
 export const getTicketList = async (request: Request, response: Response) => {
     const user: string = request.params.username;
     let TicketList = await new Model().getTicketList(user)
+
     response.send(TicketList)
 } 
 export const getUsersList = async (request: Request, response: Response) => {
@@ -106,4 +107,12 @@ export const getUser = async (request: Request, response: Response) => {
     const id = Number(request.params.id)
     let User = await new Model().getUser(id)
     response.send(User)
+}
+
+export const Login = async (request: Request, response: Response) => {
+    const username: string = request.params.username
+    const password: string = request.params.password
+
+    let LoggedUser = await new Model().Login(username, password)
+    response.send(LoggedUser)
 }

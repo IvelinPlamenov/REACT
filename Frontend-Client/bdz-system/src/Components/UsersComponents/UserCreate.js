@@ -9,10 +9,19 @@ export const UserCreate = ({onClose, onUserCreateSubmit}) =>{
                     <header className="headers">
                         <h2>Add User</h2>
                     </header>
-                    <form 
-                        onSubmit={(e) => onUserCreateSubmit(e)}
-                    >
-                        <div className="form-row">
+                    <form onSubmit={(e) => onUserCreateSubmit(e)}>
+                        {/* <div className="form-row"> */}
+                            <div className="form-group">
+                                <label htmlFor="username">Username</label>
+                                <div className="input-wrapper">
+                                    <span><i className="fa-solid fa-user"></i></span>
+                                    <input 
+                                        id="username"
+                                        name="username" 
+                                        type="text" 
+                                    />
+                                </div>
+                            </div>
                             <div className="form-group">
                                 <label htmlFor="email">Email</label>
                                 <div className="input-wrapper">
@@ -21,6 +30,40 @@ export const UserCreate = ({onClose, onUserCreateSubmit}) =>{
                                         id="email"
                                         name="email" 
                                         type="text" 
+                                    />
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="FirstName">First Name</label>
+                                <div className="input-wrapper">
+                                    <span><i className="fa-solid fa-user"></i></span>
+                                    <input 
+                                        id="FirstName"
+                                        name="FirstName" 
+                                        type="text" 
+                                    />
+                                </div>
+                            </div>
+                            
+                            <div className="form-group">
+                                <label htmlFor="LastName">Last Name</label>
+                                <div className="input-wrapper">
+                                    <span><i className="fa-solid fa-user"></i></span>
+                                    <input 
+                                        id="LastName"
+                                        name="LastName" 
+                                        type="text" 
+                                    />
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="age">Age</label>
+                                <div className="input-wrapper">
+                                    <span><i className="fa-solid fa-user"></i></span>
+                                    <input 
+                                        id="age"
+                                        name="age" 
+                                        type="number" 
                                     />
                                 </div>
                             </div>
@@ -35,7 +78,7 @@ export const UserCreate = ({onClose, onUserCreateSubmit}) =>{
                                     />
                                 </div>
                             </div>
-                        </div>
+                        {/* </div> */}
                         <div id="form-actions">
                             <button id="action-save" className="btn" type="submit">Save</button>
                             <button id="action-cancel" className="btn" type="button" onClick={onClose}>
