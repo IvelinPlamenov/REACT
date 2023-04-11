@@ -1,0 +1,72 @@
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+  }
+  
+.backdrop {
+    background-color: rgba(0, 0, 0, 0.75);
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 20;
+  }
+  
+.modal {
+    width: 25rem;
+    position: absolute;
+    max-height: 90vh;
+    border-radius: 20px;
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 25%);
+    z-index: 30;
+    margin-top: 100px;
+    margin-left: 570px;
+  }
+  
+
+.user-container{
+    margin-left: 95px;
+}
+.header {
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    padding: 0 10%;
+    justify-content: center;
+    align-items: center;
+    background: #24292f;
+  }
+  .btn-close{ 
+    margin-top:5px;
+    margin-left: 7px;
+      background: #de4545;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 0.25rem;
+      /* display: inline-block; */
+      align-items: center;
+      justify-content: center;
+      font: inherit;
+      font-weight: bold;
+      padding: 5px 20px;
+      width: 80px;
+      height: 30px;
+    }
+    
+  .btn-close:hover {
+      opacity: 0.9;
+      box-shadow: 1px 2px 8px black;
+    }
+  .btn-close:disabled,
+  .btn.save:disabled {
+        cursor: not-allowed;
+        background: rgba(0, 0, 0, 0.5);
+      }

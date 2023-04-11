@@ -67,3 +67,197 @@
     color: #D3D3D3;
   }
   
+.btn {
+    background: #2a87a5;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: inherit;
+    font-weight: bold;
+  }
+
+  .btn:disabled,
+  .btn.save:disabled {
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .btn:disabled svg,
+  .btn.save:disabled svg {
+    color: #ccc;
+  }
+  
+  .btn:hover {
+    opacity: 0.9;
+    box-shadow: 1px 2px 8px black;
+  }
+  
+  .btn svg {
+    color: inherit;
+    font-size: 1.25rem;
+  }
+  
+  .btn.save {
+    background-color: rgb(81, 194, 123);
+  }
+  
+  .btn.cancel {
+    background-color: rgb(231, 108, 108);
+  }
+  
+  .btn.close {
+    background-color: transparent;
+    padding: 5px 10px;
+    height: auto;
+  }
+  
+  .btn.close svg {
+    color: black;
+  }
+  
+  .before {
+    margin-right: 10px;
+  }
+  .after {
+    margin-left: 10px;
+  }
+  
+  .btn {
+    padding: 5px;
+    color: white;
+    opacity: 0.7;
+    width: 30px;
+    height: 30px;
+  }
+  .btn svg {
+    margin: 0;
+  }
+  
+  .btn:hover {
+    opacity: 1;
+  }
+  
+  .delete-btn {
+    background-color: #d9534f;
+    padding: 5px;
+    color: white;
+    opacity: 0.7;
+    width: 30px;
+    height: 30px;
+    background: #2a87a5;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: inherit;
+    font-weight: bold;
+  }
+  
+  .edit-btn {
+    background-color: #5cb85c;
+  }
+  
+  /* Add user button  */
+  .btn-add {
+    padding: 5px 20px;
+    height: auto;
+    width: auto;
+    margin-left: 365px;
+    /* margin-left: 67.5%; */
+    /* margin-top: 30px; */
+    background: #2a87a5;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    display: inline-block ;
+    align-items: center;
+    justify-content: center;
+    font: inherit;
+    font-weight: bold;
+  }
+  
+
+  .btn-add:hover {
+    opacity: 1;
+  }
+  .btn-add:disabled{
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .btn-add:hover {
+    opacity: 0.9;
+    box-shadow: 1px 2px 8px black;
+  }
+
+  .SearchSection{
+    display: inline-block;
+    margin-top: 60px;
+    margin-left: 90px;
+  }
+  
+  .Search{
+    margin-left: 280px;
+    /* width: 10%; */
+    padding: 12px 20px;
+    width: 300px;
+    /* margin: 8px 100px; */
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+.SearchBtn{
+  margin-left: 10px;
+appearance: none;
+background-color: #FCFCFD;
+border-radius: 2px;
+border-width: 0;
+box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+box-sizing: border-box;
+color: #36395A;
+cursor: pointer;
+
+font-family: "JetBrains Mono",monospace;
+height: 30px;
+justify-content: center;
+line-height: 1;
+list-style: none;
+overflow: hidden;
+padding-left: 16px;
+padding-right: 16px;
+
+text-align: center;
+text-decoration: none;
+transition: box-shadow .15s,transform .15s;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+white-space: nowrap;
+will-change: box-shadow,transform;
+font-size: 18px;
+}
+
+.SearchBtn:focus {
+box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.SearchBtn:hover {
+box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+transform: translateY(-2px);
+}
+
+.SearchBtn:active {
+box-shadow: #D6D6E7 0 3px 7px inset;
+transform: translateY(2px);
+}

@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import styles from "./UsersList.module.css"
-import { UpdateUser } from "../UpdateUser"
+import { UpdateUser } from "../UpdateUser/UpdateUser"
 import { User } from "../User/User"
 import { UserDelete } from "../UserDelete/UserDelete"
-import { UserCreate } from "../UserCreate"
-import { UserDetails } from "../UserDetails"
+import { UserCreate } from "../UserCreate/UserCreate"
+import { UserDetails } from "../UserDetails/UserDetails"
+
+import { AuthContext } from "../../context/AuthContext"
 
 export const UsersList = () =>{
     const [UserList, setUserList] = useState([])
@@ -13,13 +15,26 @@ export const UsersList = () =>{
     const [showDeleteUser, setShowDeleteUser] = useState(null);
     const [showEditUser, setShowEditUser] = useState(null);
     const [userDetails, setUserDetails] = useState(null);
+    const [searchData, setSearchData] = useState("")
+    const [searchDataList, setSearchDataList] = useState([])
+
+    const { role } = useContext(AuthContext);
 
     useEffect( ()=>{
         fetch(`http://localhost:3001/bdj/UsersList`)
         .then(response => response.json())
         .then(data => setUserList(data))
+
+    },[searchData]);
+
+    useEffect( ()=>{
+        if(searchData !== ""){
+            fetch(`http://localhost:3001/bdj/UsersList/${searchData}`)
+                .then(response => response.json())
+                .then(data => setSearchDataList(data));
+        } else { setSearchData([]) }
         
-    },[]);
+    },[searchData]);
 
     const onUserDelete = (UserId) => {
         fetch(`http://localhost:3001/bdj/DeleteUser`, {
@@ -32,6 +47,7 @@ export const UsersList = () =>{
             })
         });
         setUserList(state => state.filter(x => x.id !== UserId));
+        setSearchDataList(state => state.filter(x => x.id !== UserId));
     };
     const onClose = () => {
         setShowDeleteUser(null);
@@ -61,6 +77,8 @@ export const UsersList = () =>{
     const onUserAddClick = () => {
         setShowAddUser(true);
     };
+    
+
     const onUserUpdateSubmitHandler = (e, userId, username) => {
         e.preventDefault() 
         const formData = new FormData(e.currentTarget);
@@ -74,7 +92,8 @@ export const UsersList = () =>{
             body: JSON.stringify({
                 id: userId,
                 data})
-        })
+        }).then(response => response.json())
+        .then(data => setUserList(state => state.map(x => x.id === userId ? data: x)))
         const user = {
             id: userId,
             username: username,
@@ -84,7 +103,7 @@ export const UsersList = () =>{
             Age: data.age,
             role: data.role
         }
-        setUserList(state => state.map(x => x.id === userId ? user: x))
+        setSearchDataList(state => state.map(x => x.id === userId ? user: x))
         setShowEditUser(null);
     };  
 
@@ -112,11 +131,66 @@ export const UsersList = () =>{
             role: UserData.role
         })
         setUserList(state => [...state, user])
+        setSearchDataList(state => [...state, user])
         onClose()
     }   
-   
+  
     return( 
         <>
+        { role !== "admin" ?  <h1>Not Permision</h1>: 
+            <div>
+                <form className={styles["SearchSection"]} >
+                    <input className={styles["Search"]} 
+                        id="search"
+                        name="search" 
+                        type="text" 
+                        placeholder="Search..."
+                        onChange={e => setSearchData(e.target.value)}/>     
+                    
+                </form>
+                <button className={styles["btn-add"]} onClick={onUserAddClick}>Add new user</button>
+            <table  className={styles["users-content-table"]}>
+            <thead>
+                <tr>
+                    <th scope="colgroup">Username</th>
+                    <th scope="colgroup">ID</th>
+                    <th scope="colgroup">First Name</th>
+                    <th scope="colgroup">Last Name</th>
+                    <th scope="colgroup">Email</th>
+                    <th scope="colgroup">Age</th>
+                    <th scope="colgroup">Role</th>
+                    <th className={styles["delete"]} scope="colgroup"> </th>
+                    <th className={styles["edit"]} scope="colgroup"> </th>
+                    <th className={styles["details"]} scope="colgroup"> </th>
+                </tr>
+            </thead>
+            <tbody >
+                {searchDataList.length>0 ? 
+                    searchDataList.sort((a, b) => a.id - b.id).map(u =>
+                        <User
+                            {...u}
+                            key={u?.id}
+                            onDeleteClick={onDeleteClick}
+                            onEditClick={onEditClick}
+                            onInfoClick={onInfoClick}
+                        />
+                     ) : UserList.sort((a, b) => a.id - b.id).map(u =>
+                        <User
+                            {...u}
+                            key={u?.id}
+                            onDeleteClick={onDeleteClick}
+                            onEditClick={onEditClick}
+                            onInfoClick={onInfoClick}
+                        />
+                    )
+                }
+                
+            </tbody>
+            </table>
+            
+        </div>
+
+        }
         {selectedUser && <UserDetails {...userDetails} onClose={onClose}/>}
 
         {showAddUser && <UserCreate onClose={onClose} onUserCreateSubmit={onUserCreateSubmitHandler} />}
@@ -125,37 +199,7 @@ export const UsersList = () =>{
        
         {showEditUser &&<UpdateUser user={showEditUser} onClose={onClose} onUserUpdateSubmit={onUserUpdateSubmitHandler}  />}
 
-            <div>
-                <table  className="users-content-table">
-                <thead>
-                    <tr>
-                        <th scope="colgroup">Username</th>
-                        <th scope="colgroup">ID</th>
-                        <th scope="colgroup">First Name</th>
-                        <th scope="colgroup">Last Name</th>
-                        <th scope="colgroup">Email</th>
-                        <th scope="colgroup">Age</th>
-                        <th scope="colgroup">Role</th>
-                        <th className="delete" scope="colgroup"> </th>
-                        <th className="edit" scope="colgroup"> </th>
-                        <th className="details" scope="colgroup"> </th>
-                    </tr>
-                </thead>
-                <tbody >
-                    {UserList.sort((a, b) => a.id - b.id).map(u =>
-                            <User
-                                {...u}
-                                key={u?.id}
-                                onDeleteClick={onDeleteClick}
-                                onEditClick={onEditClick}
-                                onInfoClick={onInfoClick}
-                            />
-                        )}
-                </tbody>
-                </table>
-                <button className="btn-add btn" onClick={onUserAddClick}>Add new user</button>
-            </div>
-    
+            
         </>
             
     )

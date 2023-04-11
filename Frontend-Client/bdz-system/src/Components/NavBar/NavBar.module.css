@@ -63,3 +63,9 @@ mat-icon {
   text-decoration: none;
   font-size: 15px;
 }
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

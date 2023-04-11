@@ -1,4 +1,4 @@
-import "./EditUser.css"
+import styles from "./UpdateUser.module.css"
 export const UpdateUser = ({user,onClose,onUserUpdateSubmit}) =>{
     // const [UserData, setUserData] = useState([])
     // const [Email, setEmail] = useState(`${UserData[0]?.email}`)
@@ -31,18 +31,18 @@ export const UpdateUser = ({user,onClose,onUserUpdateSubmit}) =>{
     // }
     
     return(        
-        <div className="overlay">
-            <div className="backdrop"></div>
-            <div className="modal">
-                <div className="user-container">
-                    <header className="headers">
+        <div className={styles["overlay"]}>
+            <div className={styles["backdrop"]}></div>
+            <div className={styles["modal"]}>
+                <div className={styles["user-container"]}>
+                    <header className={styles["headers"]}>
                         <h2>Edit User: {user[0]?.username}</h2>
                     </header>
                     <form onSubmit={(e) => onUserUpdateSubmit(e, user[0].id, user[0]?.username)}>
                         {/* <div className="form-row"> */}
-                            <div className="form-group">
+                            <div className={styles["form-group"]}>
                                 <label htmlFor="email">Email</label>
-                                <div className="input-wrapper">
+                                <div className={styles["input-wrapper"]}>
                                     <span><i className="fa-solid fa-user"></i></span>
                                     <input 
                                         id="email"
@@ -52,9 +52,9 @@ export const UpdateUser = ({user,onClose,onUserUpdateSubmit}) =>{
                                     />
                                 </div>
                             </div>
-                            <div className="form-group">
+                            <div className={styles["form-group"]}>
                                 <label htmlFor="FirstName">First Name</label>
-                                <div className="input-wrapper">
+                                <div className={styles["input-wrapper"]}>
                                     <span><i className="fa-solid fa-user"></i></span>
                                     <input 
                                         id="FirstName"
@@ -65,9 +65,9 @@ export const UpdateUser = ({user,onClose,onUserUpdateSubmit}) =>{
                                 </div>
                             </div>
                             
-                            <div className="form-group">
+                            <div className={styles["form-group"]}>
                                 <label htmlFor="LastName">Last Name</label>
-                                <div className="input-wrapper">
+                                <div className={styles["input-wrapper"]}>
                                     <span><i className="fa-solid fa-user"></i></span>
                                     <input 
                                         id="LastName"
@@ -77,9 +77,9 @@ export const UpdateUser = ({user,onClose,onUserUpdateSubmit}) =>{
                                     />
                                 </div>
                             </div>
-                            <div className="form-group">
+                            <div className={styles["form-group"]}>
                                 <label htmlFor="age">Age</label>
-                                <div className="input-wrapper">
+                                <div className={styles["input-wrapper"]}>
                                     <span><i className="fa-solid fa-user"></i></span>
                                     <input 
                                         id="age"
@@ -89,9 +89,9 @@ export const UpdateUser = ({user,onClose,onUserUpdateSubmit}) =>{
                                     />
                                 </div>
                             </div>
-                            <div className="form-group">
+                            <div className={styles["form-group"]}>
                                 <label htmlFor="role">Role</label>
-                                <div className="input-wrapper">
+                                <div className={styles["input-wrapper"]}>
                                     <span><i className="fa-solid fa-user"></i></span>
                                     <input 
                                         id="role"
@@ -103,8 +103,8 @@ export const UpdateUser = ({user,onClose,onUserUpdateSubmit}) =>{
                             </div>
                         {/* </div> */}
                         <div id="form-actions">
-                            <button id="action-save" className="btn" type="submit">Save</button>
-                            <button id="action-cancel" className="btn" type="button" onClick={onClose}>
+                            <button id="action-save" className={styles["btn"]} type="submit">Save</button>
+                            <button id="action-cancel" className={styles["btn-close"]} type="button" onClick={onClose}>
                                 Cancel
                             </button>
                         </div>

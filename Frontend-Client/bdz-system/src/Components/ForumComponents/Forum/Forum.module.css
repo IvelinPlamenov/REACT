@@ -1,0 +1,431 @@
+.container{
+    margin: 20px;
+    padding: 20px;
+}
+
+.subforum{
+    width: 1000px;
+    margin: 20px auto;}
+
+.subforum-title{
+    background-color:#628bc8;
+    padding: 5px;
+    border-radius: 5px;
+    margin:4px;
+}
+
+.subforum-column{
+    padding: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+
+}
+.subforum-title h1{
+
+    text-align: center;
+}
+
+.hr {
+    margin-top: 20px;
+    width:1000px;
+    text-align:left;
+}
+
+.color:nth-of-type(even) {
+    background-color: #eeeded;
+  }
+
+
+.viewComment{
+    align-items: center;
+    appearance: none;
+    background-color: #FCFCFD;
+    border-radius: 2px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #36395A;
+    cursor: pointer;
+    
+    font-family: "JetBrains Mono",monospace;
+    height: 30px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 18px;
+    margin-left: 100px;
+    margin-top: 20px;
+  }
+.viewComment:focus {
+    box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  }
+  
+.viewComment:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    transform: translateY(-2px);
+  }
+  
+.viewComment:active {
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(2px);
+  }
+.comments{
+    width: 1000px;
+    margin: 10px auto;
+    }
+.hr2 {
+    margin-left: 100px;
+    margin-top: 15px;
+    width:800px;
+    text-align:left;
+}
+
+.subComments{
+    margin-left: 100px;
+    margin-top: 5px;
+    display:inline-block;
+    width: 80%;
+
+}
+
+
+.AddCommentSection{
+  margin-top: 20px;
+}
+
+.AddComment{
+        width: 80%;
+        padding: 12px 20px;
+        margin: 8px 100px;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+}
+
+.AddCommentLabel{
+    margin-left: 100px ;
+    font-size: 20px;
+}
+
+.AddCommentBtn{
+    align-items: center;
+    appearance: none;
+    background-color: #FCFCFD;
+    border-radius: 2px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #36395A;
+    cursor: pointer;
+    
+    font-family: "JetBrains Mono",monospace;
+    height: 30px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 18px;
+    margin-left: 800px;
+  }
+
+  .AddCommentBtn:focus {
+    box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  }
+  
+.AddCommentBtn:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    transform: translateY(-2px);
+  }
+  
+.AddCommentBtn:active {
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(2px);
+  }
+
+  .edit-btn {
+    background-color: #ffffff;
+    padding: 5px; 
+    color: white;
+  
+    width: 30px;
+    height: 30px;
+    border: none;
+    color: #49c349;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    font: inherit;
+    font-weight: bold;
+    margin-right: 6px;
+  }
+  .edit-btn svg {
+    margin: 0;
+  }
+  .edit-btn:hover {
+    opacity: 1;
+  }
+  .edit-btn:disabled{
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .edit-btn:disabled svg {
+    color: #ccc;
+  }
+  .edit-btn:hover {
+    opacity: 0.9;
+    box-shadow: 1px 2px 8px black;
+  }
+
+  .edit-btn svg {
+    color: inherit;
+    font-size: 1.25rem;
+  }
+
+  .deleteForum {
+    background-color: #ffffff;
+    padding: 5px; 
+    color: white;
+  
+    width: 30px;
+    height: 30px;
+    border: none;
+    color: #d20c0c;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    font: inherit;
+    font-weight: bold;
+    margin-right: 6px;
+  }
+  .deleteForum svg {
+    margin: 0;
+  }
+  .deleteForum:hover {
+    opacity: 1;
+  }
+  .deleteForum:disabled{
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .deleteForum:disabled svg {
+    color: #ccc;
+  }
+  .deleteForum:hover {
+    opacity: 0.9;
+    box-shadow: 1px 2px 8px black;
+  }
+
+  .deleteForum svg {
+    color: inherit;
+    font-size: 1.25rem;
+  }
+
+
+.h1{
+    text-align: center;
+    display:inline-block;
+
+  }
+.btn{
+  margin-top: 5px;
+  float: right;
+}
+
+.commentBtn{
+  margin-top: 5px;
+  float: right;
+}
+
+.btnDiv{
+  display: inline-block;
+  margin-right: 10px;
+}
+
+
+
+
+.editComment {
+  float: left;
+  padding: 5px; 
+  width: 30px;
+  height: 30px;
+  border: none;
+  color: #000000;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  /* display: inline-block; */
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  font-weight: bold;
+opacity: 50%;
+  
+}
+.editComment svg {
+  margin: 0;
+}
+.editComment:hover {
+  opacity: 1;
+}
+.editComment-btn:disabled{
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, 0.5);
+}
+.edit:disabled svg {
+  color: #ccc;
+}
+.editComment:hover {
+  opacity: 0.9;
+  box-shadow: 1px 2px 8px black;
+}
+
+.editComment svg {
+  color: inherit;
+  font-size: 1.25rem;
+}
+
+.singleComment{
+  display: inline-block;
+}
+
+.map{
+  width:100%;
+  display: inline-block;
+}
+
+.asd{
+  display: inline-block;
+}
+
+/* .asd input{
+  float: left;
+} */
+
+.editCmDiv{
+  display: inline-block;
+}
+
+.editCmDiv input{
+  width: 600px;
+}
+.editDiv{
+  width: 770px;
+  display: inline-block;
+
+}
+
+.check {
+  padding: 3px;  
+  width: 30px;
+  height: 30px;
+  border: none;
+  color: #36d539;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  /* display: inline-block; */
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  font-weight: bold;
+  margin-left: 80px;
+  /* margin-top: 5px; */
+  
+}
+.check svg {
+  margin-top: 1px;
+  /* padding: 4px; */
+}
+.check:hover {
+  opacity: 1;
+}
+.check:disabled{
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, 0.5);
+}
+.check:disabled svg {
+  color: #ccc;
+}
+.check:hover {
+  opacity: 0.9;
+  box-shadow: 1px 2px 8px black;
+}
+
+.check svg {
+  color: inherit;
+  font-size: 1.25rem;
+}
+
+.checkDiv{
+  /* display: inline-block; */
+  /* margin-top: 5px; */
+  float: right;
+}
+
+.deleteComment {
+  float: left;
+  padding: 5px; 
+  width: 30px;
+  height: 30px;
+  border: none;
+  color: #000000;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  /* display: inline-block; */
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  font-weight: bold;
+  /* opacity: 50%; */
+  
+}
+.deleteComment svg {
+  margin: 0;
+  padding-top: 4px;
+}
+.deleteComment:hover {
+  opacity: 1;
+}
+.deleteComment-btn:disabled{
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, 0.5);
+}
+.edit:disabled svg {
+  color: #ccc;
+}
+.deleteComment:hover {
+  opacity: 0.9;
+  box-shadow: 1px 2px 8px black;
+}
+
+.editComment svg {
+  color: inherit;
+  font-size: 1.25rem;
+}

@@ -1,19 +1,19 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import styles from "./TicketList.module.css"
 
+import { AuthContext } from "../context/AuthContext"
+
+
 export const TicketList = () =>{
-    const [User, setUser] = useState("")
     const [List, setList] = useState([])
     
+    const { username } = useContext(AuthContext);
+
     useEffect( ()=>{
-        let loggedUser = localStorage.getItem('loggedUser') 
-        setUser(JSON.parse(loggedUser).username)
-        if(User !== "" ){
-            fetch(`http://localhost:3001/bdj/ticketList/${User}`)
-                .then(response => response.json())
-                .then(data => setList(data))
-        }
-    },[User]);
+        fetch(`http://localhost:3001/bdj/ticketList/${username}`)
+            .then(response => response.json())
+            .then(data => setList(data))
+    },[username]);
 
     const deleteTicket = (id) =>{
         fetch(`http://localhost:3001/bdj/deleteTicket`, {
@@ -30,7 +30,7 @@ export const TicketList = () =>{
 
     return(
        <div>
-            {List ? 
+            {List.length>0 ? 
             <div>
                 <div className={styles["bileti"]}>
                     <h1><b>Билети</b></h1>

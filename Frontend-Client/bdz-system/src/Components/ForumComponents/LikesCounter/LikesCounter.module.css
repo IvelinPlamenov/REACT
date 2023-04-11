@@ -1,0 +1,95 @@
+.div{
+  float: right;
+  margin-right: 20px;
+
+}
+
+.counter{
+  float: left;
+  margin-right: 15px;
+  margin-top: 20px;
+  opacity: 50%;
+}
+
+.like {
+  background-color: #ff4e45;
+  padding: 5px; 
+  color: rgb(147, 159, 220);
+  margin-top: 20px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  color: #f9f9f9;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  font-weight: bold;
+  margin-right: 6px;
+}
+.like svg {
+  margin: 0;
+}
+.like:hover {
+  opacity: 1;
+}
+.like:disabled{
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, 0.5);
+}
+.like:disabled svg {
+  color: #ccc;
+}
+.like:hover {
+  opacity: 0.9;
+  box-shadow: 1px 2px 8px black;
+}
+
+.like svg {
+  color: inherit;
+  font-size: 1.25rem;
+}
+
+
+.notlike {
+  background-color: #f2f2f2;
+  padding: 5px; 
+  color: rgb(147, 159, 220);
+  margin-top: 20px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  color: #000000;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  font-weight: bold;
+  margin-right: 6px;
+}
+.notlike svg {
+  margin: 0;
+}
+.notlike:hover {
+  opacity: 1;
+}
+.notlike:disabled{
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, 0.5);
+}
+.notlike:disabled svg {
+  color: #ccc;
+}
+.notlike:hover {
+  opacity: 0.9;
+  box-shadow: 1px 2px 8px black;
+}
+
+.notlike svg {
+  color: inherit;
+  font-size: 1.25rem;
+}

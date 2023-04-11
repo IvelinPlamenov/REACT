@@ -11,7 +11,7 @@ const LoginFormKeys = {
 };
 
 export const Login = () =>{
-    const { onLoginSubmit } = useContext(AuthContext);
+    const { onLoginSubmit, wrongCredentials, emptyCredentials } = useContext(AuthContext);
     const { values, changeHandler, onSubmit } = useForm({
         [LoginFormKeys.Username]: '',
         [LoginFormKeys.Password]: '',
@@ -40,6 +40,9 @@ export const Login = () =>{
                                 value={values[LoginFormKeys.Password]}
                                 onChange={changeHandler}
                             />
+                            { wrongCredentials && <p className={styles["wrongCredentials"]}> Грешен потребител или парола</p>}
+                            { emptyCredentials && <p className={styles["wrongCredentials"]}> Моля въведете потребител и парола </p>}
+
                             <button type="submit" className={styles["btn-login"]}>Login</button>
                             <Link to="/register" className={styles["btn-new"]}>Create new Account</Link>
                         </div>      
